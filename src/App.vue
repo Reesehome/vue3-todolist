@@ -1,7 +1,6 @@
 <template>
     <!-- <NewFeatures></NewFeatures> -->
     <TodoList></TodoList>
-
 </template>
 
 <script lang="ts">
@@ -20,9 +19,18 @@ export default defineComponent({
 </script>
 
 <style>
-#app {
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    #app {
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 50px 0;
+        width: 500px;
+        height: 100%;
+        color: #2c3e50;
+
+    }
 </style>
