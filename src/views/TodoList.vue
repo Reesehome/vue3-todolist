@@ -42,7 +42,7 @@ export default defineComponent({
             });
             newTask.value = '';
         }
-        const del = (index: number) => {
+        const del = (index: string | number | symbol)=> {
             state.list.splice(index, 1)
         }
         const showDetail = (l: TodoListItem) => {};

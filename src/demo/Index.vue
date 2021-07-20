@@ -5,7 +5,8 @@
     <!-- <WatchEffect></WatchEffect> -->
     <!-- <Setup></Setup> -->
     <!-- <Card></Card> -->
-    <Model></Model>
+    <!-- <Model></Model> -->
+    <Emit></Emit>
 </template>
 
 <script lang="ts">
@@ -17,6 +18,7 @@ import WatchEffect from '@/demo/WatchEffect.vue';
 import Setup from '@/demo/Setup.vue';
 import Card from '@/demo/card';
 import Model from '@/demo/Model.vue';
+import Emit from '@/demo/Emit.vue';
 
 export default defineComponent({
     name: 'NewFeatures',
@@ -27,7 +29,8 @@ export default defineComponent({
         WatchEffect,
         Setup,
         Card,
-        Model
+        Model,
+        Emit
     },
 
 });
