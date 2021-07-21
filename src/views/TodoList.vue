@@ -15,9 +15,12 @@
 <script lang='ts'>
 import { defineComponent, reactive, ref } from 'vue';
 import { TodoListItem } from '/types/data.d.ts';
+import { useRouter } from 'vue-router';
+
 export default defineComponent({
     name: 'TodoList',
     setup: () => {
+        const router = useRouter();
         let newTask = ref('');
         let state = reactive({
             list: <TodoListItem>[
@@ -45,7 +48,9 @@ export default defineComponent({
         const del = (index: string | number | symbol)=> {
             state.list.splice(index, 1)
         }
-        const showDetail = (l: TodoListItem) => {};
+        const showDetail = (l: TodoListItem) => {
+            router.push({ path: '/detail' })
+        };
         const toggleFinished = (l: TodoListItem) => {
             l.finished = !l.finished;
         }

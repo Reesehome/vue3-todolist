@@ -1,19 +1,17 @@
 <template>
     <!-- <NewFeatures></NewFeatures> -->
-    <TodoList></TodoList>
+    <router-view></router-view>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
 import NewFeatures from '@/demo/Index.vue';
-import TodoList from '@/views/TodoList.vue';
 
 export default defineComponent({
     name: 'App',
     components: {
         NewFeatures,
-        TodoList
     },
 });
 </script>

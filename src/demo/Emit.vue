@@ -1,9 +1,10 @@
 <template>
     <Component1 @sent-msg="getMsg"></Component1>
+    <p>{{msg}}</p>
 </template>
 
 <script lang="ts">
-import { defineComponent, createApp } from "vue";
+import { defineComponent, createApp, ref } from "vue";
 const component1 = defineComponent({
     name: 'component1',
     emits: ['sentMsg'],
@@ -25,10 +26,12 @@ export default defineComponent({
         'Component1': component1,
     },
     setup() {
+        let msg = ref('');
         const getMsg = (val: string) => {
-            console.log(val)
+            msg.value = val;
         }
         return {
+            msg,
             getMsg
         }
     },
