@@ -5,4 +5,5 @@ export interface TodoListItem {
     finished?: Boolean;
     noticeTime?: Date;
     remark?: String;
+    children?: Array<TodoListItem>;
 }

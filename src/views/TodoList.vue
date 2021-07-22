@@ -1,27 +1,19 @@
 <template>
     <h2>待办事项</h2>
-    <ul>
-        <li v-for="(l, li) in state.list" :key="li" @click="showDetail(l)" class="listItem" :class="{'finished': l.finished}">
-            <i class="listCicle" @click.stop="toggleFinished(l)"></i>
-            <span class="listTitle">{{l.title}}</span>
-            <span class="delBtn" @click.stop="del(li)">删除</span>
-        </li>
-    </ul>
-    <div class="addBtn">
-        <i>+</i>
-        <input class="newTask" v-model="newTask" placeholder="添加任务" @keyup.enter="add" />
-    </div>
+    <List :data="state.list" @click="showDetail" @toggle-finished="toggleFinished" @del="del"></List>
+    <AddBtn placeholder="添加任务" @add="add"></AddBtn>
 </template>
 <script lang='ts'>
 import { defineComponent, reactive, ref } from 'vue';
 import { TodoListItem } from '/types/data.d.ts';
 import { useRouter } from 'vue-router';
+import List from '@/components/List.vue';
+import AddBtn from '@/components/AddBtn.vue';
 
 export default defineComponent({
     name: 'TodoList',
     setup: () => {
         const router = useRouter();
-        let newTask = ref('');
         let state = reactive({
             list: <TodoListItem>[
                 {
@@ -41,13 +33,16 @@ export default defineComponent({
                 },
             ],
         });
-        const add = () => {
-            state.list.push({
-                id: state.list[state.list.length - 1].id + 1,
-                type: 'extra',
-                title: newTask.value,
-            });
-            newTask.value = '';
+        const add = (val: string) => {
+            if (!state.list) {
+                state.list = [{ id: 0, type: 'extra', title: val }];
+            } else {
+                state.list.push({
+                    id: state.list[state.list.length - 1].id + 1,
+                    type: 'extra',
+                    title: val,
+                });
+            }
         };
         const del = (index: string | number | symbol) => {
             state.list.splice(index, 1);
@@ -59,7 +54,6 @@ export default defineComponent({
             l.finished = !l.finished;
         };
         return {
-            newTask,
             state,
             add,
             del,
@@ -77,6 +71,10 @@ export default defineComponent({
         //     this.newTask = '';
         // },
     },
+    components: {
+        List,
+        AddBtn
+    }
 });
 </script>
 <style scoped lang="scss">
@@ -84,103 +82,6 @@ h2 {
     text-align: left;
     color: #2d8cf0;
 }
-ul {
-    padding-left: 0;
-    height: calc(100% - 85px);
-    overflow: auto;
-}
-ul > li {
-    background-color: #f8f8f9;
-    margin-bottom: 2px;
-    padding: 10px;
-    border-radius: 5px;
-    list-style: none;
-    line-height: 2;
-    text-align: left;
-}
-.listItem {
-    position: relative;
-}
-.listTitle {
-    margin-left: 20px;
-    user-select: none;
-}
-.listCicle {
-    display: inline-block;
-    margin-left: 20px;
-    width: 20px;
-    height: 20px;
-    vertical-align: text-top;
-    border: 2px solid #808695;
-    border-radius: 50%;
-    transition-property: transform, border-color, background-color;
-    transition-duration: 0.2s;
-    &:active {
-        transform: scale(0.9);
-        border-color: #aaa;
-        background-color: #aaa;
-    }
-}
-.finished {
-    .listTitle {
-        color: #c5c8ce;
-        text-decoration: line-through;
-    }
-    .listCicle {
-        border-color: #c5c8ce;
-        background-color: #c5c8ce;
-    }
-}
 
-.delBtn {
-    position: absolute;
-    top: 10px;
-    right: 0;
-    font-size: 14px;
-    padding: 0 20px;
-    display: none;
-    color: #808695;
-    transition-property: color;
-    transition-duration: 0.2s;
-    &:hover {
-        color: #2c3e50;
-    }
-}
 
-.listItem:hover {
-    .delBtn {
-        display: block;
-        user-select: none;
-        cursor: pointer;
-    }
-}
-.addBtn {
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 10px 30px;
-    background-color: #f8f8f8;
-    transform: translateY(-10px);
-    width: 500px;
-    border: none;
-    border-radius: 5px;
-    text-align: left;
-    i {
-        display: inline-block;
-        width: 22px;
-        text-align: center;
-        line-height: 22px;
-        font-size: 22px;
-        font-style: normal;
-        user-select: none;
-    }
-    .newTask {
-        display: inline-block;
-        margin-left: 20px;
-        border: none;
-        background-color: #f8f8f8;
-        &:focus-visible {
-            outline: none;
-        }
-    }
-}
 </style>
