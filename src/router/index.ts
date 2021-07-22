@@ -7,14 +7,17 @@ const routes = [
     },
     {
         path: '/todo',
+        name: 'Todo',
         component: () => import("@/views/TodoList.vue"),
     },
     {
         path: '/detail',
+        name: 'Detail',
         component: () => import("@/views/TodoDetail.vue")
     },
     {
         path: '/newFeature',
+        name: 'NewFeature',
         component: () => import("@/demo/Index.vue"),
     }
 
