@@ -46,7 +46,7 @@ export default defineComponent({
             if (!children.value) {
                 children.value = [{ id: 0, type: 'extra', title: val }];
             } else {
-                let listItem: TodoListItem = children.value[children.value.length - 1];
+                let listItem = children.value[children.value.length - 1];
                 children.value.push({
                     id: listItem.id ? listItem.id + 1 : 1,
                     type: 'extra',

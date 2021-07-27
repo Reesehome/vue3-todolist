@@ -37,7 +37,7 @@ export default defineComponent({
             if (!state.list) {
                 state.list = [{ id: 0, type: 'extra', title: val }];
             } else {
-                let listItem: TodoListItem = state.list[state.list.length - 1];
+                let listItem = state.list[state.list.length - 1];
 
                 state.list.push({
                     id: listItem.id ? listItem.id + 1 : 1,
