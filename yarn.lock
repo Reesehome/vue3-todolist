@@ -255,6 +255,10 @@
   version "4.14.171"
   resolved "https://registry.nlark.com/@types/lodash/download/@types/lodash-4.14.171.tgz?cache=0&sync_timestamp=1625609589008&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Flodash%2Fdownload%2F%40types%2Flodash-4.14.171.tgz#f01b3a5fe3499e34b622c362a46a609fdb23573b"
 
+"@types/node@^16.4.1":
+  version "16.4.1"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.4.1.tgz#9fad171a5b701613ee8a6f4ece3c88b1034b1b03"
+
 "@vitejs/plugin-vue-jsx@^1.1.6":
   version "1.1.6"
   resolved "https://registry.nlark.com/@vitejs/plugin-vue-jsx/download/@vitejs/plugin-vue-jsx-1.1.6.tgz#c9e7b63d1ebf537a24a0b4b3b31f4beb8055cef6"

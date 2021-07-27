@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, createApp, ref } from "vue";
+import { defineComponent, ref } from "vue";
 const component1 = defineComponent({
     name: 'component1',
     emits: ['sentMsg'],

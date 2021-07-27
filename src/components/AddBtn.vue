@@ -17,6 +17,7 @@ export default defineComponent({
     setup(props, context) {
         let newTask = ref('');
         const add = () => {
+            if(!newTask.value) return;
             context.emit('add', newTask.value);
             newTask.value = '';
         };

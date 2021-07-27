@@ -28,7 +28,8 @@ export default {
         //     }
         // })
         watchEffect(() => {
-            let val = reactiveData.res
+            let val = reactiveData.res;
+            console.log(val)
         }, {
             onTrack({target}) {
                 console.log(target)

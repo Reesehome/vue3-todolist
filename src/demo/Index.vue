@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import Popup from '@/demo/Popup.vue';
 import LearnSuspense from '@/demo/Suspense.vue';
 import Watch from '@/demo/Watch.vue';

@@ -4,9 +4,9 @@
     <AddBtn placeholder="添加任务" @add="add"></AddBtn>
 </template>
 <script lang='ts'>
-import { defineComponent, reactive, ref } from 'vue';
-import { TodoListItem } from '/types/data.d.ts';
-import { useRouter } from 'vue-router';
+import { defineComponent, reactive } from 'vue';
+import { TodoListItem } from '#/data';
+import { useRouter, RouteParamsRaw } from 'vue-router';
 import List from '@/components/List.vue';
 import AddBtn from '@/components/AddBtn.vue';
 
@@ -15,7 +15,7 @@ export default defineComponent({
     setup: () => {
         const router = useRouter();
         let state = reactive({
-            list: <TodoListItem>[
+            list: <TodoListItem[]>[
                 {
                     id: 1,
                     type: 'personal',
@@ -37,18 +37,20 @@ export default defineComponent({
             if (!state.list) {
                 state.list = [{ id: 0, type: 'extra', title: val }];
             } else {
+                let listItem: TodoListItem = state.list[state.list.length - 1];
+
                 state.list.push({
-                    id: state.list[state.list.length - 1].id + 1,
+                    id: listItem.id ? listItem.id + 1 : 1,
                     type: 'extra',
                     title: val,
                 });
             }
         };
-        const del = (index: string | number | symbol) => {
+        const del = (index: number) => {
             state.list.splice(index, 1);
         };
         const showDetail = (l: TodoListItem) => {
-            router.push({ name: 'Detail', params: l });
+            router.push({ name: 'Detail', params: <RouteParamsRaw>l });
         };
         const toggleFinished = (l: TodoListItem) => {
             l.finished = !l.finished;

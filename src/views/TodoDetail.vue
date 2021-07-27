@@ -14,7 +14,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, toRef } from 'vue';
 import { useRoute } from 'vue-router';
-import { TodoListItem } from '/types/data.d.ts';
+import { TodoListItem } from '#/data';
 import { ElDatePicker, ElButton } from 'element-plus';
 import List from '@/components/List.vue';
 import AddBtn from '@/components/AddBtn.vue';
@@ -30,8 +30,10 @@ export default defineComponent({
         state.detailData = currentRoute.params;
 
         // 处理列表事件
-        const del = (index: string | number | symbol) => {
-            state.detailData.children.splice(index, 1);
+        const del = (index: number) => {
+            if (state.detailData.children) {
+                state.detailData.children.splice(index, 1);
+            }
         };
 
         const toggleFinished = (l: TodoListItem) => {
@@ -44,8 +46,9 @@ export default defineComponent({
             if (!children.value) {
                 children.value = [{ id: 0, type: 'extra', title: val }];
             } else {
+                let listItem: TodoListItem = children.value[children.value.length - 1];
                 children.value.push({
-                    id: children.value[children.value.length - 1].id + 1,
+                    id: listItem.id ? listItem.id + 1 : 1,
                     type: 'extra',
                     title: val,
                 });

@@ -9,13 +9,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { TodoListItem } from '/types/data.d.ts';
-
+import { defineComponent, PropType } from 'vue';
+import { TodoListItem } from '#/data';
 export default defineComponent({
     name: 'List',
     props: {
-        data: <TodoListItem>Array,
+        data: Array as PropType<TodoListItem[]>
     },
     emits: ['click', 'toggleFinished', 'del'],
     setup(props, context) {

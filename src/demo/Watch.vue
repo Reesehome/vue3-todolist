@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref, toRef, toRefs, watch } from "vue";
+import { reactive, toRefs, watch } from "vue";
 
 export default {
     setup() {
@@ -44,7 +44,7 @@ export default {
             console.log(val, preVal)
         }, {
             onTrack(e) {
-                // console.log('追踪', e)
+                console.log('追踪', e)
             },
             onTrigger(e) {
                 console.log('更改时', e)
