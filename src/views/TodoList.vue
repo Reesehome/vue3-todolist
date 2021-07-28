@@ -9,7 +9,7 @@ import { TodoListItem } from '#/data';
 import { useRouter, RouteParamsRaw } from 'vue-router';
 import List from '@/components/List.vue';
 import AddBtn from '@/components/AddBtn.vue';
-
+import {getJoke} from '@/api/app';
 export default defineComponent({
     name: 'TodoList',
     setup: () => {
@@ -76,6 +76,11 @@ export default defineComponent({
     components: {
         List,
         AddBtn
+    },
+    mounted() {
+        getJoke().then((res) => {
+            console.log(res)
+        })
     }
 });
 </script>

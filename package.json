@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit --skipLibCheck && vite build",
+    "build": "cross-env NODE_ENV=production vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.55",
     "sass": "^1.35.2",
     "vue": "^3.0.5",
